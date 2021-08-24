@@ -1,8 +1,11 @@
-const logger = require('./logger');
+//const logger = require('./logger');
 const path = require('path');
 const os = require('os');
 const fs = require('fs');
-const EventEmitter = require('events'); // because event emitter is a class we write all camel case
+//const EventEmitter = require('events'); // because event emitter is a class we write all camel case
+// const {
+//     emitWarning
+// } = require('process');
 
 
 //logger.log('asdadasdasd'); // 1
@@ -29,6 +32,44 @@ const EventEmitter = require('events'); // because event emitter is a class we w
 // });
 
 
-const emitter = new EventEmitter(); // an object of event emitter class
-//raise an event
-emitter.emit('messageLogged');
+// events
+// const emitter = new EventEmitter(); // an object of event emitter class
+
+// //register a listner
+// emitter.on('messageLogged', (arg) => {
+//     console.log('Listner called', arg);
+// });
+
+// //raise an event
+// emitter.emit('messageLogged', {
+//     id: 1,
+//     url: 'url'
+// });
+
+
+// const Logger = require('./logger');
+// const logger = new Logger();
+// logger.on('messageLogged', (arg) => {
+//         console.log('Listner called', arg);
+//     });
+// logger.log('message');
+
+
+
+const http = require('http');
+const server = http.createServer((req, res) => {
+    if (req.url === '/') {
+        res.write('Hello World');
+        res.end();
+    }
+
+    // if(req.url === '/api/courses'){
+    //     res.write(JSON.stringify(arrayofobj));
+    //     res.end();
+    // }
+});
+// server.on('connection', (socket) => {
+//     console.log('New Connection ...');
+// });
+server.listen(3000);
+console.log('Listening on port 3000 ...');
